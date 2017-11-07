@@ -16,7 +16,7 @@ public class LevelManager : MonoBehaviour {
 
 
 
-	public void Loadlevel(string levelName)
+	public void LoadLevel(string levelName)
 	{
 		print ("Loading level" + levelName);
 		// loads the Scene named levelName
