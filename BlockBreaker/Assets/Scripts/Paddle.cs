@@ -12,7 +12,6 @@ public class Paddle : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
 		//save the position in Unity units (depending on the number of units on screen)
 		float mousePosInUnits = (Input.mousePosition.x / Screen.width * 13f) - 6.5f;
 
@@ -21,10 +20,9 @@ public class Paddle : MonoBehaviour {
 		Vector3 paddlePosition = new Vector3 (2f, this.transform.position.y, 0f);
 
 		//make the paddle move with the mouse
-		paddlePosition.x = mousePosInUnits;
+		paddlePosition.x = Mathf.Clamp(mousePosInUnits,-6.5f, 6.5f);
 
 		//set the position of the paddle (this) to paddlePosition
 		this.transform.position = paddlePosition;
-
 	}
 }
