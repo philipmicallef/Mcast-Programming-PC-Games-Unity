@@ -23,7 +23,8 @@ public class LoseCollider : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+
+		myLevelManager = GameObject.FindObjectOfType<LevelManager> ();
 	}
 	
 	// Update is called once per frame
