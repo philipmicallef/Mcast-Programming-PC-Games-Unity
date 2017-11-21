@@ -5,6 +5,8 @@ using UnityEngine;
 public class Brick : MonoBehaviour {
 
 
+	public AudioClip crack;
+
 	public int maxHits;
 
 	private int numberOfHits;
@@ -12,6 +14,10 @@ public class Brick : MonoBehaviour {
 	private LevelManager myLevelManager;
 
 	bool isBreakable = false;
+
+	public static int breakableCount = 0;
+
+
 
 	void SimulateWin()
 	{
@@ -24,7 +30,14 @@ public class Brick : MonoBehaviour {
 		numberOfHits++;
 		if (numberOfHits >= maxHits) 
 		{
+			//decrement the number of breakable bricks
+			breakableCount--;
+
+			AudioSource.PlayClipAtPoint (crack, this.transform.position);
+
 			Destroy (this.gameObject);
+
+			myLevelManager.BrickDestroyed ();
 		}
 	}
 
@@ -42,6 +55,16 @@ public class Brick : MonoBehaviour {
 	void Start () {
 
 		myLevelManager = GameObject.FindObjectOfType<LevelManager> ();
+
+		numberOfHits = 0;
+
+		isBreakable = (this.tag == "Break");
+
+		//Keep track of breakable tags
+		if (isBreakable) 
+		{
+			breakableCount++;
+		}
 		
 	}
 	

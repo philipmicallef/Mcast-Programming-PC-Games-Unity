@@ -11,7 +11,17 @@ public class LevelManager : MonoBehaviour {
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex + 1);
 	}
 
-	public void Quit()
+
+	public void BrickDestroyed()
+	{
+		//calling stsic variable breakableCount
+		if (Brick.breakableCount <= 0) 
+		{
+			LoadNextLevel();
+		}
+	}
+
+	public void QuitGame()
 	{
 		UnityEditor.EditorApplication.isPlaying = false;	
 	}
